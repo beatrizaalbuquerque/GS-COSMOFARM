@@ -44,7 +44,7 @@ plantas = [
     ["Manjericão",    30,  5, 23],
     ["Quinoa",        90, 15,368],
 ]
- 
+
 
 # lista 2 - Sensores da estufa
 # nome, leitura atual, minimo ideal, maximo ideal
@@ -71,7 +71,7 @@ sensores = [
     ["Nivel nutrientes",   78.0, 50.0,100.0],
     ["Vibração",            0.1,  0.0,  2.0],
 ]
- 
+
 
 # lista 3 - Alertas do sistema
 # id, nivel, mensagem, resolvido
@@ -98,7 +98,7 @@ alertas = [
     [19, "INFO",    "Nodulação de bacterias confirmada", True ],
     [20, "AVISO",   "Potássio acima de 420 ppm", True ],
 ]
- 
+
 
 # lista 4 - Missoes espaciais
 # nome, destino, duracao em dias, tripulantes
@@ -125,35 +125,36 @@ missoes = [
     ["Solar Sail Test", "LEO",           60,  0],
     ["Mars Epsilon",    "Marte",        550,  6],
 ]
- 
- 
-# funções
 
-def ver_plantas():
+# funções
+def calcular_agua_total(lista_plantas):
+    total = 0
+    for planta in lista_plantas:
+        total += planta[2]
+        return total
+
+def ver_plantas(plantas):
     print("PLANTAS DA ESTUFA ")
     print(f"{'Nome':<16} {'Dias':<8} {'Agua(mL)':<10} {'Cal/100g'}")
     print("-" * 45)
- 
+
     for p in plantas:
         print(f"{p[0]:<16} {p[1]:<8} {p[2]:<10} {p[3]}")
- 
-    total_agua = 0
-    for p in plantas:
-        total_agua += p[2]
- 
+        
+total_agua = calcular_agua_total(plantas)
+
     print("-" * 45)
     print(f"Total de plantas  : {len(plantas)}")
     print(f"Agua total por dia: {total_agua} mL")
- 
- 
-def verificar_sensores():
+
+def verificar_sensores(sensores):
     print("SENSORES DA ESTUFA ")
     print(f"{'Sensor':<22} {'Leitura':<10} {'Status'}")
     print("-" * 45)
- 
+
     ok = 0
     problema = 0
- 
+
     for s in sensores:
         if s[1] < s[2]:
             status = "ABAIXO DO IDEAL"
@@ -165,23 +166,22 @@ def verificar_sensores():
             status = "OK"
             ok += 1
         print(f"{s[0]:<22} {s[1]:<10} {status}")
- 
+
     print("-" * 45)
     print(f"Sensores OK  : {ok}")
     print(f"Com problema : {problema}")
     print(f"Saúde da estufa : {(ok / len(sensores) * 100):.0f}%")
- 
- 
+
 def ver_alertas():
     print("ALERTAS DO SISTEMA ")
     print("Filtrar: [1] Todos  [2] CRITICO  [3] AVISO  [4] INFO")
- 
+
     try:
         opcao = int(input("Opção: "))
     except ValueError:
         print("Entrada inválida. Mostrando todos.")
         opcao = 1
- 
+
     if opcao == 2:
         filtro = "CRITICO"
     elif opcao == 3:
@@ -190,22 +190,21 @@ def ver_alertas():
         filtro = "INFO"
     else:
         filtro = None
- 
+
     print(f"\n{'ID':<5} {'Nivel':<10} {'Mensagem':<38} {'Resolvido'}")
     print("-" * 60)
- 
+
     for a in alertas:
         if filtro is None or a[1] == filtro:
             res = "Sim" if a[3] else "NAO"
             print(f"{a[0]:<5} {a[1]:<10} {a[2]:<38} {res}")
- 
+
     pendentes = sum(1 for a in alertas if not a[3])
     print(f" Alertas pendentes: {pendentes}")
- 
- 
+
 def calcular_missao():
     print("CALCULAR NECESSIDADE DA MISSÃO ")
- 
+
     while True:
         try:
             tripulantes = int(input("Número de tripulantes: "))
@@ -214,7 +213,7 @@ def calcular_missao():
             print("Digite um número maior que zero.")
         except ValueError:
             print("Digite apenas números inteiros.")
- 
+
     while True:
         try:
             dias = int(input("Duração da missão (dias): "))
@@ -223,18 +222,18 @@ def calcular_missao():
             print("Digite um número maior que zero.")
         except ValueError:
             print("Digite apenas números inteiros.")
- 
+
     calorias_por_dia = 2500
     agua_por_dia = 2000  # mL por pessoa
- 
+
     total_cal  = calorias_por_dia * tripulantes * dias
     total_agua = agua_por_dia * tripulantes * dias
- 
+
     print(f"Tripulantes : {tripulantes}")
     print(f"Duração : {dias} dias")
     print(f"Calorias necessárias : {total_cal} kcal")
     print(f"Água para beber : {total_agua} mL ({total_agua // 1000} litros)")
- 
+
 # missoes com a duracao parecida
 
     print(" Missões com duração próxima:")
@@ -245,8 +244,7 @@ def calcular_missao():
             achou = True
     if not achou:
         print(" Nenhuma missão cadastrada com duração similar.")
- 
- 
+
 def sobre():
     print("SOBRE O COSMOFARM")
     print("Problema: garantir a produção de alimentos em missões espaciais.")
@@ -255,8 +253,7 @@ def sobre():
     print("Garante alimentação fresca na Lua, Marte e ISS.")
     print("Desenvolvido na Global Solution FIAP 2026.")
     print("ODS: 2 (Fome Zero), 9 (Inovação), 13 (Clima).")
- 
- 
+
 
 # menu principal
 
