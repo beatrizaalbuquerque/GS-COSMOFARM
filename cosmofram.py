@@ -131,9 +131,9 @@ def calcular_agua_total(lista_plantas):
     total = 0
     for planta in lista_plantas:
         total += planta[2]
-        return total
+    return total
 
-def ver_plantas(plantas):
+def ver_plantas():
     print("PLANTAS DA ESTUFA ")
     print(f"{'Nome':<16} {'Dias':<8} {'Agua(mL)':<10} {'Cal/100g'}")
     print("-" * 45)
@@ -141,13 +141,13 @@ def ver_plantas(plantas):
     for p in plantas:
         print(f"{p[0]:<16} {p[1]:<8} {p[2]:<10} {p[3]}")
 
-total_agua = calcular_agua_total(plantas)
+    total_agua = calcular_agua_total(plantas)
 
     print("-" * 45)
     print(f"Total de plantas  : {len(plantas)}")
     print(f"Agua total por dia: {total_agua} mL")
 
-def verificar_sensores(sensores):
+def verificar_sensores():
     print("SENSORES DA ESTUFA ")
     print(f"{'Sensor':<22} {'Leitura':<10} {'Status'}")
     print("-" * 45)
