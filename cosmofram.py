@@ -140,7 +140,7 @@ def ver_plantas(plantas):
 
     for p in plantas:
         print(f"{p[0]:<16} {p[1]:<8} {p[2]:<10} {p[3]}")
-        
+
 total_agua = calcular_agua_total(plantas)
 
     print("-" * 45)
@@ -267,13 +267,13 @@ def menu():
         print("[4] Calcular necessidade da missão")
         print("[5] Sobre o sistema")
         print("[0] Sair")
- 
+
         try:
             opcao = int(input("Escolha um número: "))
         except ValueError:
             print("Digite apenas números.")
             continue
- 
+
         match opcao:
             case 1: 
                 print()
@@ -295,6 +295,5 @@ def menu():
                 break
             case _:
                 print("Opção inválida.")
- 
- 
+
 menu()
