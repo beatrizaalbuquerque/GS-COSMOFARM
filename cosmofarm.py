@@ -244,15 +244,12 @@ def calcular_missao():
             achou = True
     if not achou:
         print(" Nenhuma missão cadastrada com duração similar.")
-
 def sobre():
     print("SOBRE O COSMOFARM")
-    print("Problema: garantir a produção de alimentos em missões espaciais.")
+    print("Problema: garantir alimentação em missões espaciais longas.")
     print("A COSMOFARM gerencia uma estufa espacial automatizada.")
-    print("Controla plantas, sensores e alertas em missões.")
-    print("Garante alimentação fresca na Lua, Marte e ISS.")
-    print("Desenvolvido na Global Solution FIAP 2026.")
-    print("ODS: 2 (Fome Zero), 9 (Inovação), 13 (Clima).")
+    print("Controla plantas, sensores e alertas em tempo real.")
+    print("Desenvolvido na Global Solution FIAP 2026 - ODS 2, 9 e 13.")
 
 
 # menu principal
