@@ -23,6 +23,6 @@ Como executar:
 3. Utilizar o menu para navegar entre as funcionalidades.
 
 Tecnologias utilizadas:
- Python
- Spyder
- GitHub
+Python
+Spyder
+GitHub
